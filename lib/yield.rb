@@ -11,7 +11,12 @@ module Yield
 
     def self.render(filename = 'README.md')
       @@filename = filename
-      @@content = Octokit.markdown(File.read(@@filename), mode: 'gfm')
+      begin
+        @@content = Octokit.markdown(File.read(@@filename), mode: 'gfm')
+      rescue Exception => e
+        puts "Filename '#{@@filename}' doesn't exist."
+        exit
+      end
     end
 
     get '/' do
