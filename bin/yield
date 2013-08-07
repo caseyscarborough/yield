@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require_relative '../lib/yield'
+
+options = {}
+
+OptionParser.new do |o|
+  o.banner = "Usage: #{o.program_name} [options]"
+
+  o.on('-f FILENAME', '--file', 'Specifies markdown file to render') { |o| options[:filename] = o.to_s }
+
+  begin
+    o.parse!
+  rescue
+  end
+end
+
+options[:filename] ? Yield::Markdown.render(options[:filename]) : Yield::Markdown.render
+
+Yield::Markdown.run!
