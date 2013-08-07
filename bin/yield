@@ -2,11 +2,13 @@
 
 require_relative '../lib/yield'
 
+`stty -echoctl`
+
 if ARGV.length == 1
   filename = ARGV[0]
-  Yield::Markdown.render(filename)
+  Yield::Markdown.init(filename)
 else
-  Yield::Markdown.render
+  Yield::Markdown.init
 end
 
 Yield::Markdown.run!
