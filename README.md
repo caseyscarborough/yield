@@ -1,7 +1,6 @@
 # Yield
 
-Yield is a command line utility that generates a preview of README.md and markdown files using GitHub Flavored Markdown
-in your browser.
+Yield is a command line utility that generates a preview of README.md and markdown files using GitHub Flavored Markdown in your browser.
 
 ## Installation
 
