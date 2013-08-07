@@ -7,7 +7,9 @@ in your browser.
 
 ### Dependencies
 
+* Ruby
 * [sinatra](http://sinatrarb.com)
+* [thin](http://code.macournoyer.com/thin/)
 * [octokit](http://octokit.github.io)
 
 Install the gem by issuing the following command:

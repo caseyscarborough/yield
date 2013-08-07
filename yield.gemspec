@@ -25,4 +25,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "sinatra"
   spec.add_dependency "octokit"
+  spec.add_dependency "thin"
 end

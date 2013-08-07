@@ -1,5 +1,6 @@
 require "sinatra"
 require "octokit"
+require "thin"
 require_relative "yield/version"
 
 
@@ -7,7 +8,7 @@ module Yield
 
   class Markdown < Sinatra::Base
 
-    disable :logging, :dump_errors
+    set :server, %w[thin]
     @@content = nil
     @@filename = nil
 
@@ -17,6 +18,7 @@ module Yield
       handler         = detect_rack_handler
       handler_name    = handler.name.gsub(/.*::/, '')
       server_settings = settings.respond_to?(:server_settings) ? settings.server_settings : {}
+
       handler.run self, server_settings.merge(:Port => port, :Host => bind) do |server|
         unless handler_name =~ /cgi/i
           $stderr.puts "-> yield is now serving your markdown " +
