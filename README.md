@@ -5,6 +5,11 @@ in your browser.
 
 ## Installation
 
+### Dependencies
+
+* [sinatra](http://sinatrarb.com)
+* [octokit](http://octokit.github.io)
+
 Install the gem by issuing the following command:
 
 ```bash
@@ -17,6 +22,13 @@ From the root of your project, or any folder containing a README.md file, run th
 
 ```bash
 $ yield
+-> yield is now serving your markdown at localhost:4567 using Thin...
+```
+
+You may also specify a path to a markdown file you'd like to render, such as:
+
+```bash
+$ yield UPDATES.md
 ```
 
 Then navigate to [localhost:4567](http://localhost:4567) in your browser to view the preview of the file.
