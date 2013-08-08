@@ -6,15 +6,18 @@ Yield is a command line utility that generates a preview of README.md and markdo
 
 ### Dependencies
 
-* [Ruby v2.0.0](http://www.ruby-lang.org/en/)
+* [Ruby v1.9.3](http://www.ruby-lang.org/en/) or greater
 * [sinatra](http://sinatrarb.com)
 * [thin](http://code.macournoyer.com/thin/)
+* [launchy](https://github.com/copiousfreetime/launchy)
 
 Install the gem by issuing the following command:
 
 ```bash
 $ gem install yield
 ```
+
+This will also install any necessary dependencies for the gem that are not currently installed.
 
 ## Usage
 
@@ -31,9 +34,7 @@ You may also specify a path to a markdown file you'd like to render, such as:
 $ yield UPDATES.md
 ```
 
-Then navigate to [localhost:4000](http://localhost:4000) in your browser to view the preview of the file.
-
-You can stop the server by pressing Control+C.
+Then navigate to [localhost:4000](http://localhost:4000) in your browser to view the preview of the file. You can stop the server by pressing Control+C.
 
 ### Errors
 
