@@ -11,4 +11,4 @@ else
   Yield::Markdown.init
 end
 
-Yield::Markdown.run!
+Yield::Server.run!

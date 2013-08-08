@@ -9,7 +9,6 @@ Yield is a command line utility that generates a preview of README.md and markdo
 * [Ruby v2.0.0](http://www.ruby-lang.org/en/)
 * [sinatra](http://sinatrarb.com)
 * [thin](http://code.macournoyer.com/thin/)
-* [octokit](http://octokit.github.io)
 
 Install the gem by issuing the following command:
 
