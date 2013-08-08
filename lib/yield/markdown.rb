@@ -28,7 +28,7 @@ module Yield
         [:INT, :TERM].each { |sig| trap(sig) { quit!(server, handler_name) } }
         server.threaded = settings.threaded if server.respond_to? :threaded=
         set :running, true
-        # open_in_browser
+        open_in_browser
         yield server if block_given?
       end
     rescue Errno::EADDRINUSE
