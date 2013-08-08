@@ -28,7 +28,7 @@ module Yield
         [:INT, :TERM].each { |sig| trap(sig) { quit!(server, handler_name) } }
         server.threaded = settings.threaded if server.respond_to? :threaded=
         set :running, true
-        Launchy.open("http://localhost:#{port}")
+        # open_in_browser
         yield server if block_given?
       end
     rescue Errno::EADDRINUSE
@@ -45,6 +45,14 @@ module Yield
     get '/' do
       @@content = Octokit.markdown(File.read(@@filename), mode: 'gfm')
       erb :index, locals: { content: @@content, filename: @@filename }
+    end
+
+    not_found do
+      erb :'404', locals: { filename: params[:filename] }
+    end
+
+    def self.open_in_browser
+      Launchy.open("http://localhost:#{port}/")
     end
     
   end
