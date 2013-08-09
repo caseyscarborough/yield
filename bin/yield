@@ -7,10 +7,13 @@ require_relative '../lib/yield'
 is_windows = (RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/)
 `stty -echoctl` unless is_windows
 
+port = 4000
+
 OptionParser.new do |o|
   o.banner = "Usage: #{o.program_name} MARKDOWN_FILE.md"
 
   o.on('-h', '--help', 'View the help menu') { puts o; Kernel.exit }
+  o.on('-p PORT', '--port PORT', 'Specify port to run Yield on') { |o| port = o }
   o.on('-v', '--version', 'Display version number') do
     puts 'yield version ' + Yield::VERSION
     Kernel.exit
@@ -25,4 +28,4 @@ end
 
 # Parse a specific file if given, otherwise parse README.md.
 ARGV.length == 1 ? Yield::Markdown.init(ARGV[0]) : Yield::Markdown.init
-Yield::Server.run!
+Yield::Server.run!(port)
