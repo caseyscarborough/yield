@@ -66,6 +66,15 @@ If this does not work for you, see the following links, which address the same i
 * [How to install Ruby 2.0.0 with RVM on OSX 10.8 Mountain Lion](http://scottyv.me/2013/03/How-to-install-ruby-2-0-0-on-OSX-Mountain-Lion/)
 * [“bad ecpoint” SSL error on fresh RVM Ruby 1.9.3 install on OSX Mountain Lion](http://stackoverflow.com/questions/15672133/bad-ecpoint-ssl-error-on-fresh-rvm-ruby-1-9-3-install-on-osx-mountain-lion)
 
+### Windows OpenSSL Error
+
+If you receive an OpenSSL "certificate verify failed" error on Windows after launching the gem, the following steps will fix the issue.
+
+1. Download [http://curl.haxx.se/ca/cacert.pem](http://curl.haxx.se/ca/cacert.pem) and save it to C:\cacert.pem.
+2. Go to Computer -> Advanced Settings -> Environment Variables and create a new System Variable:<br />
+  **Variable**: SSL_CERT_FILE<br />
+  **Value**: C:\cacert.pem.
+4. Restart all command prompt windows and reissue the `yield` command.  
 
 ## Contributing
 
