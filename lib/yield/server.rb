@@ -1,7 +1,7 @@
 module Yield
   class Server < Sinatra::Base
 
-    set :server, %w[thin]
+    set :server, %w[webrick]
     set :port, 4000
 
     # Override run! method from Sinatra
@@ -9,8 +9,8 @@ module Yield
       set options
       handler         = detect_rack_handler
       handler_name    = handler.name.gsub(/.*::/, '')
-      server_settings = settings.respond_to?(:server_settings) ? settings.server_settings : {}
-      handler.run self, server_settings.merge(:Port => port, :Host => bind) do |server|
+      server_settings = {}
+      handler.run self, server_settings.merge(Port: port, Host: bind, Logger: WEBrick::Log.new("/dev/null"), AccessLog: []) do |server|
         unless handler_name =~ /cgi/i
           $stderr.puts "=* Yield is serving your markdown at http://localhost:#{port}/"
         end
