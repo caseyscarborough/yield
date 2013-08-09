@@ -1,16 +1,28 @@
 #!/usr/bin/env ruby
 require 'rbconfig'
+require 'optparse'
 require_relative '../lib/yield'
 
+# Determine if OS is Windows, and disable echo of characters in hat notation (^C) if it is not.
 is_windows = (RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/)
-
 `stty -echoctl` unless is_windows
 
-if ARGV.length == 1
-  filename = ARGV[0]
-  Yield::Markdown.init(filename)
-else
-  Yield::Markdown.init
+OptionParser.new do |o|
+  o.banner = "Usage: #{o.program_name} MARKDOWN_FILE.md"
+
+  o.on('-h', '--help', 'View the help menu') { puts o; Kernel.exit }
+  o.on('-v', '--version', 'Display version number') do
+    puts 'yield version ' + Yield::VERSION
+    Kernel.exit
+  end
+
+  begin
+    o.parse!
+  rescue OptionParser::InvalidOption => o
+    puts o.message
+  end
 end
 
+# Parse a specific file if given, otherwise parse README.md.
+ARGV.length == 1 ? Yield::Markdown.init(ARGV[0]) : Yield::Markdown.init
 Yield::Server.run!
