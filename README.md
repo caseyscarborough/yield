@@ -37,6 +37,8 @@ $ yield UPDATES.md
 
 Then navigate to [localhost:4000](http://localhost:4000) in your browser to view the preview of the file. You can stop the server by pressing Control+C.
 
+Yield also supports relative URLs, so you can preview other files by navigating to them in the URL bar. For example, you can preview the CHANGELOG.md file by navigating to [localhost:4000/CHANGELOG.md](http://localhost:4000/CHANGELOG.md).
+
 ## Issues
 
 ### API Rate Limit Exceeded
