@@ -23,6 +23,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake'
 
   spec.add_dependency 'sinatra', '1.4.3'
-  spec.add_dependency 'thin', '1.5.1'
   spec.add_dependency 'launchy', '2.3.0'
 end
