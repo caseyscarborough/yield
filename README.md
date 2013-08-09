@@ -32,18 +32,22 @@ $ yield
 You may also specify a path to a markdown file you'd like to render, such as:
 
 ```bash
+# Render a specific file
 $ yield UPDATES.md
 ```
 
 Then navigate to [localhost:4000](http://localhost:4000) in your browser to view the preview of the file. You can stop the server by pressing Control+C.
 
-Yield also supports relative URLs, so you can preview other files by navigating to them in the URL bar. For example, you can preview the CHANGELOG.md file by navigating to [localhost:4000/CHANGELOG.md](http://localhost:4000/CHANGELOG.md).
+Yield also supports relative URLs in the same directory, so you can preview other files by navigating to them in the URL bar. For example, you can preview the CHANGELOG.md file by navigating to [localhost:4000/CHANGELOG.md](http://localhost:4000/CHANGELOG.md).
 
-## Issues
+Finally, you can specify the port for the server to run on using the `-p` or `--port` option:
 
-### API Rate Limit Exceeded
+```bash
+# Run the server on port 8080
+$ yield -p 8080
+```
 
-GitHub's API only allows only 60 unauthenticated requests per hour from a single IP address. If you are hitting this limit, then you must really like yield!
+## Potential Errors
 
 ### OpenSSL Error
 

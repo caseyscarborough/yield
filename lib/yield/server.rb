@@ -32,10 +32,12 @@ module Yield
 
     get '/:filename' do
       filename = params[:filename]
-      if File.exist?(filename)
+      begin
         content = Markdown.convert_to_html(File.read(filename))
         erb :index, locals: { content: content, filename: filename }
-      else
+      rescue Errno::EISDIR
+        raise Sinatra::NotFound
+      rescue Errno::ENOENT
         raise Sinatra::NotFound
       end
     end 
