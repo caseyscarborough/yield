@@ -1,5 +1,7 @@
 # Yield
 
+[![Gem Version](https://badge.fury.io/rb/yield.png)](http://badge.fury.io/rb/yield)
+
 Yield is a command line utility that generates a preview of README.md and markdown files using GitHub Flavored Markdown in your browser. It parses your markdown files using [GitHub's Markdown API](http://developer.github.com/v3/markdown/), so you can preview it exactly how it will look on GitHub.
 
 ## Installation
