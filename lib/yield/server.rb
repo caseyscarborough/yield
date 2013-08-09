@@ -31,7 +31,20 @@ module Yield
       erb :index, locals: { content: content, filename: filename }
     end
 
-    not_found { erb :'404' }
+    get '/:filename' do
+      filename = params[:filename]
+      if File.exist?(filename)
+        content = Markdown.convert_to_html(File.read(filename))
+        erb :index, locals: { content: content, filename: filename }
+      else
+        raise Sinatra::NotFound
+      end
+    end 
+
+    not_found do 
+      filename = request.fullpath.split('/')[-1]
+      erb :'404', locals: { filename: filename }
+    end
 
     def self.open_in_browser
       Launchy.open("http://localhost:#{port}/")
