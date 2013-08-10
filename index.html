@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Yield by caseyscarborough</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Yield</h1>
+          <h2>A command-line utility for previewing markdown files in GitHub Flavored Markdown.</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/caseyscarborough/yield/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/caseyscarborough/yield/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/caseyscarborough/yield" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>
+<a name="yield" class="anchor" href="#yield"><span class="octicon octicon-link"></span></a>Yield</h1>
+
+<p><a href="http://badge.fury.io/rb/yield"><img src="https://badge.fury.io/rb/yield.png" alt="Gem Version"></a></p>
+
+<p>Yield is a command line utility that generates a preview of README.md and markdown files using GitHub Flavored Markdown in your browser. It parses your markdown files using <a href="http://developer.github.com/v3/markdown/">GitHub's Markdown API</a>, so you can preview it exactly how it will look on GitHub.</p>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<h3>
+<a name="dependencies" class="anchor" href="#dependencies"><span class="octicon octicon-link"></span></a>Dependencies</h3>
+
+<ul>
+<li>
+<a href="http://www.ruby-lang.org/en/">Ruby v1.9.3</a> or greater</li>
+<li><a href="http://sinatrarb.com">sinatra</a></li>
+<li><a href="https://github.com/copiousfreetime/launchy">launchy</a></li>
+</ul><p>Install the gem by issuing the following command:</p>
+
+<div class="highlight"><pre><span class="nv">$ </span>gem install yield
+</pre></div>
+
+<p>This will also install any necessary dependencies for the gem that are not currently installed.</p>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>From the root of your project, or any folder containing a README.md file, run the following command:</p>
+
+<div class="highlight"><pre><span class="nv">$ yield</span>
+<span class="o">=</span>* Yield is serving your markdown at http://localhost:4000/
+</pre></div>
+
+<p>You may also specify a path to a markdown file you'd like to render, such as:</p>
+
+<div class="highlight"><pre><span class="c"># Render a specific file</span>
+<span class="nv">$ </span>yield UPDATES.md
+</pre></div>
+
+<p>Then navigate to <a href="http://localhost:4000">localhost:4000</a> in your browser to view the preview of the file. You can stop the server by pressing Control+C.</p>
+
+<p>Yield also supports relative URLs in the same directory, so you can preview other files by navigating to them in the URL bar. For example, you can preview the CHANGELOG.md file by navigating to <a href="http://localhost:4000/CHANGELOG.md">localhost:4000/CHANGELOG.md</a>.</p>
+
+<p>Finally, you can specify the port for the server to run on using the <code>-p</code> or <code>--port</code> option:</p>
+
+<div class="highlight"><pre><span class="c"># Run the server on port 8080</span>
+<span class="nv">$ </span>yield -p 8080
+</pre></div>
+
+<h2>
+<a name="potential-errors" class="anchor" href="#potential-errors"><span class="octicon octicon-link"></span></a>Potential Errors</h2>
+
+<h3>
+<a name="openssl-error" class="anchor" href="#openssl-error"><span class="octicon octicon-link"></span></a>OpenSSL Error</h3>
+
+<p>You may receive the following OpenSSL error after navigating to <a href="http://localhost:4000">localhost:4000</a> on Mac OS X 10.8.</p>
+
+<pre><code>OpenSSL::SSL::SSLError at /
+SSL_connect returned=1 errno=0 state=SSLv3 read server key exchange B: bad ecpoint
+</code></pre>
+
+<p>This error seems to be cause by a hosed installation of OpenSSL on the system. You can resolve this error by running the following commands:</p>
+
+<div class="highlight"><pre><span class="nv">$ </span>brew install openssl
+<span class="nv">$ </span>brew link openssl --force
+<span class="nv">$ </span>rvm reinstall 2.0.0 --with-gcc<span class="o">=</span>gcc
+</pre></div>
+
+<p>If this does not work for you, see the following links, which address the same issue:</p>
+
+<ul>
+<li><a href="http://scottyv.me/2013/03/How-to-install-ruby-2-0-0-on-OSX-Mountain-Lion/">How to install Ruby 2.0.0 with RVM on OSX 10.8 Mountain Lion</a></li>
+<li><a href="http://stackoverflow.com/questions/15672133/bad-ecpoint-ssl-error-on-fresh-rvm-ruby-1-9-3-install-on-osx-mountain-lion">“bad ecpoint” SSL error on fresh RVM Ruby 1.9.3 install on OSX Mountain Lion</a></li>
+</ul><h3>
+<a name="windows-openssl-error" class="anchor" href="#windows-openssl-error"><span class="octicon octicon-link"></span></a>Windows OpenSSL Error</h3>
+
+<p>If you receive an OpenSSL "certificate verify failed" error on Windows after launching the gem, the following steps will fix the issue.</p>
+
+<ol>
+<li>Download <a href="http://curl.haxx.se/ca/cacert.pem">http://curl.haxx.se/ca/cacert.pem</a> and save it to C:\cacert.pem.</li>
+<li>Go to Computer -&gt; Advanced Settings -&gt; Environment Variables and create a new System Variable:<br><strong>Variable</strong>: SSL_CERT_FILE<br><strong>Value</strong>: C:\cacert.pem.</li>
+<li>Restart all command prompt windows and reissue the <code>yield</code> command.<br>
+</li>
+</ol><h2>
+<a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
+
+<ol>
+<li>Fork it</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create new Pull Request</li>
+</ol>
+        </section>
+
+        <footer>
+          Yield is maintained by <a href="https://github.com/caseyscarborough">caseyscarborough</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
