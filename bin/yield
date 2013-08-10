@@ -10,12 +10,12 @@ is_windows = (RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/)
 port = 4000
 
 OptionParser.new do |o|
-  o.banner = "Usage: #{o.program_name} MARKDOWN_FILE.md"
+  o.banner = "=* Usage: #{o.program_name} MARKDOWN_FILE.md"
 
   o.on('-h', '--help', 'View the help menu') { puts o; Kernel.exit }
   o.on('-p PORT', '--port PORT', 'Specify port to run Yield on') { |o| port = o }
   o.on('-v', '--version', 'Display version number') do
-    puts 'yield version ' + Yield::VERSION
+    puts '=* yield v' + Yield::VERSION
     Kernel.exit
   end
 

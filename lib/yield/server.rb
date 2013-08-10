@@ -15,7 +15,9 @@ module Yield
         yield server if block_given?
       end
     rescue Errno::EADDRINUSE
-      $stderr.puts "=* Port #{port} is already in use!"
+      $stderr.puts "=* Port #{port} is already in use."
+    rescue Errno::EACCES
+      $stderr.puts "=* Port #{port} could not be used: Permission denied."
     end
 
     # Override quit! method from Sinatra
