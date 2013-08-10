@@ -53,7 +53,7 @@ module Yield
       end
     end
 
-    not_found do 
+    not_found do
       filename = request.fullpath.split('/')[-1]
       erb :'404', locals: { filename: filename }
     end

@@ -1,12 +1,10 @@
 module Yield
   class Markdown < Sinatra::Base
 
-    @content = nil
-    @filename = nil
+    @content, @filename = nil
 
     def self.init(filename = 'README.md')
       @filename = filename.to_s
-      $stdout = StringIO.new
       abort "Filename '#{@filename}' doesn't exist." unless File.exist?(@filename)
     end
 
@@ -18,7 +16,7 @@ module Yield
       response.body
     end
 
-    def self.filename 
+    def self.filename
       @filename
     end
 
