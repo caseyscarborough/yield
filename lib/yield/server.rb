@@ -1,4 +1,7 @@
 module Yield
+
+  class BadConnection < StandardError; end
+
   class Server < Sinatra::Base
 
     set :server, 'webrick'
@@ -27,22 +30,28 @@ module Yield
     end
 
     get '/' do
-      filename = Markdown.filename
-      content = Markdown.convert_to_html(File.read(filename))
-      erb :index, locals: { content: content, filename: filename }
+      begin
+        filename = Markdown.filename
+        content = Markdown.convert_to_html(File.read(filename))
+        erb :index, locals: { content: content, filename: filename }
+      rescue SocketError => e
+        erb :error
+      end
     end
 
     get '/:filename' do
-      filename = params[:filename]
       begin
+        filename = params[:filename]
         content = Markdown.convert_to_html(File.read(filename))
         erb :index, locals: { content: content, filename: filename }
       rescue Errno::EISDIR
         raise Sinatra::NotFound
       rescue Errno::ENOENT
         raise Sinatra::NotFound
+      rescue SocketError => e
+        erb :error
       end
-    end 
+    end
 
     not_found do 
       filename = request.fullpath.split('/')[-1]
