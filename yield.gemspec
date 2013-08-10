@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = 'caseyscarborough@gmail.com'
   spec.description   = 'A utility for previewing markdown files in GitHub Flavored Markdown.'
   spec.summary       = 'Yield is a command line utility written in Ruby that allows a user to render markdown files for previewing in a browser. It renders the markdown files using GitHub flavored markdown at http://localhost:4000/ using Sinatra and Thin.'
-  spec.homepage      = 'https://github.com/caseyscarborough/yield'
+  spec.homepage      = 'http://caseyscarborough.github.io/yield'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files`.split($/)
