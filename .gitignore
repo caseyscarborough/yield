@@ -17,3 +17,6 @@ test/version_tmp
 tmp
 .DS_Store
 /versions
+/spec
+.rspec
+test.md
