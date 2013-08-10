@@ -3,25 +3,26 @@ require 'rbconfig'
 require 'optparse'
 require_relative '../lib/yield'
 
-# Determine if OS is Windows, and disable echo of characters in hat notation (^C) if it is not.
+port = 4000
+
+# Determine OS type and disable echo of hat notation characters (^C) if not Windows.
 is_windows = (RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/)
 `stty -echoctl` unless is_windows
 
-port = 4000
+OptionParser.new do |opt|
+  opt.banner = "=* Usage: #{opt.program_name} MARKDOWN_FILE.md"
 
-OptionParser.new do |o|
-  o.banner = "=* Usage: #{o.program_name} MARKDOWN_FILE.md"
-
-  o.on('-h', '--help', 'View the help menu') { puts o; Kernel.exit }
-  o.on('-p PORT', '--port PORT', 'Specify port to run Yield on') { |o| port = o }
-  o.on('-v', '--version', 'Display version number') do
+  opt.on('-h', '--help', 'View the help menu') { puts opt; Kernel.exit }
+  opt.on('-p PORT', '--port PORT', 'Specify port to run Yield on') { |o| port = o }
+  opt.on('-v', '--version', 'Display version number') do
     puts '=* yield v' + Yield::VERSION
     Kernel.exit
   end
 
   begin
-    o.parse!
+    opt.parse!
   rescue OptionParser::InvalidOption => o
+    # Print invalid option message, but still run yield.
     puts o.message
   end
 end
